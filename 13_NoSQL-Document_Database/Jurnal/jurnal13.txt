@@ -1,0 +1,485 @@
+jurnal13> db.toko.insertOne({
+
+|   "name" : "Toko Cik Rusdi",
+
+|   "category" : "Ambatronik",
+
+|   "city" : "Jomokerto",
+
+|   "address" : { "street" : "Jl. Rongawi", "zipcode" : "64119" },
+
+|   "products" : [
+
+|     { "item" : "Tiang listrik", "price" : 450000, "stock" : 15 },
+
+|     { "item" : "Pemotong suki liar", "price" : 1200000, "stock" : 8 }
+
+|   ]
+
+| })
+
+{
+
+  acknowledged: true,
+
+  insertedId: ObjectId('6a1b3c037f9a8aa018abc118')
+
+}
+
+jurnal13> db.toko.find({ "city": "Jakarta" })
+
+[
+
+  {
+
+    _id: ObjectId('6a1b3aaa7f9a8aa018abc114'),
+
+    name: 'Toko Berkah',
+
+    category: 'Elektronik',
+
+    city: 'Jakarta',
+
+    address: { street: 'Jl. Sudirman', zipcode: '10220' },
+
+    products: [
+
+      { item: 'TV', price: 3500000, stock: 10 },
+
+      { item: 'Kulkas', price: 2800000, stock: 5 }
+
+    ]
+
+  },
+
+  {
+
+    _id: ObjectId('6a1b3aaa7f9a8aa018abc116'),
+
+    name: 'Toko Salim Bakery',
+
+    category: 'Elektronik',
+
+    city: 'Jakarta',
+
+    address: { street: 'Jl. Sudirman', zipcode: '10220' },
+
+    products: [
+
+      { item: 'Monitor LED', price: 7700000, stock: 11 },
+
+      { item: 'Airfryer Panasonic', price: 4850000, stock: 7 }
+
+    ]
+
+  }
+
+]
+
+jurnal13> db.toko.find({ "products.price":{ $gt: 3000000 } })
+
+Uncaught:
+
+SyntaxError: Unexpected character ''. (1:46)
+
+
+
+> 1 | db.toko.find({ "products.price":{ $gt: 3000000 } })
+
+    |                                               ^
+
+  2 |
+
+
+
+jurnal13> db.toko.find({ "products.price":{ $gt: 3000000} })
+
+Uncaught:
+
+SyntaxError: Unexpected character ''. (1:46)
+
+
+
+> 1 | db.toko.find({ "products.price":{ $gt: 3000000} })
+
+    |                                               ^
+
+  2 |
+
+
+
+jurnal13> db.toko.find({ "products.price":{$gt: 3000000}})
+
+Uncaught:
+
+SyntaxError: Unexpected character ''. (1:45)
+
+
+
+> 1 | db.toko.find({ "products.price":{$gt: 3000000}})
+
+    |                                              ^
+
+  2 |
+
+
+
+jurnal13> db.toko.find({ "products.price": {$gt: 3000000}})
+
+Uncaught:
+
+SyntaxError: Unexpected character ''. (1:46)
+
+
+
+> 1 | db.toko.find({ "products.price": {$gt: 3000000}})
+
+    |                                               ^
+
+  2 |
+
+
+
+jurnal13> db.toko.find({"products.price": {$gt: 3000000}})
+
+[
+
+  {
+
+    _id: ObjectId('6a1b3aaa7f9a8aa018abc114'),
+
+    name: 'Toko Berkah',
+
+    category: 'Elektronik',
+
+    city: 'Jakarta',
+
+    address: { street: 'Jl. Sudirman', zipcode: '10220' },
+
+    products: [
+
+      { item: 'TV', price: 3500000, stock: 10 },
+
+      { item: 'Kulkas', price: 2800000, stock: 5 }
+
+    ]
+
+  },
+
+  {
+
+    _id: ObjectId('6a1b3aaa7f9a8aa018abc115'),
+
+    name: 'Toko Maju',
+
+    category: 'Elektronik',
+
+    city: 'Bandung',
+
+    address: { street: 'Jl. Asia Afrika', zipcode: '40111' },
+
+    products: [
+
+      { item: 'HP', price: 1500000, stock: 20 },
+
+      { item: 'Laptop', price: 8000000, stock: 3 }
+
+    ]
+
+  },
+
+  {
+
+    _id: ObjectId('6a1b3aaa7f9a8aa018abc116'),
+
+    name: 'Toko Salim Bakery',
+
+    category: 'Elektronik',
+
+    city: 'Jakarta',
+
+    address: { street: 'Jl. Sudirman', zipcode: '10220' },
+
+    products: [
+
+      { item: 'Monitor LED', price: 7700000, stock: 11 },
+
+      { item: 'Airfryer Panasonic', price: 4850000, stock: 7 }
+
+    ]
+
+  },
+
+  {
+
+    _id: ObjectId('6a1b3aaa7f9a8aa018abc117'),
+
+    name: 'Toko Sudinotech',
+
+    category: 'Elektronik',
+
+    city: 'Surabaya',
+
+    address: { street: 'Jl. Sudirman', zipcode: '10220' },
+
+    products: [
+
+      { item: 'RTX 55000', price: 8500000, stock: 20 },
+
+      { item: 'Set PC Gaming Radeon', price: 12000000, stock: 9 }
+
+    ]
+
+  }
+
+]
+
+jurnal13> db.toko.updateOne(
+
+| {"name": "Toko Berkah"},
+
+| {$set: {"category": "aksesoris:}}
+
+Uncaught:
+
+SyntaxError: Unterminated string constant. (3:20)
+
+
+
+  1 | db.toko.updateOne(
+
+  2 | {"name": "Toko Berkah"},
+
+> 3 | {$set: {"category": "aksesoris:}}
+
+    |                     ^
+
+  4 |
+
+
+
+jurnal13> \db.toko.updateOne(
+
+|   2 | {"name": "Toko Berkah"},
+
+| > 3 | {$set: {"category": "aksesoris:}}
+
+Uncaught:
+
+SyntaxError: Expecting Unicode escape sequence \uXXXX. (1:1)
+
+
+
+> 1 | \db.toko.updateOne(
+
+    |  ^
+
+  2 |   2 | {"name": "Toko Berkah"},
+
+  3 | > 3 | {$set: {"category": "aksesoris:}}
+
+  4 |
+
+
+
+jurnal13> \db.toko.updateOne(
+
+|   2 | {"name": "Toko Berkah"},
+
+| > 3 | {$set: {"category": "aksesoris:}})
+
+Uncaught:
+
+SyntaxError: Expecting Unicode escape sequence \uXXXX. (1:1)
+
+
+
+> 1 | \db.toko.updateOne(
+
+    |  ^
+
+  2 |   2 | {"name": "Toko Berkah"},
+
+  3 | > 3 | {$set: {"category": "aksesoris:}})
+
+  4 |
+
+
+
+jurnal13> \db.toko.updateOne(
+
+|   2 | {"name": "Toko Berkah"},
+
+| > 3 | {$set: {"category": "aksesoris"}})
+
+Uncaught:
+
+SyntaxError: Expecting Unicode escape sequence \uXXXX. (1:1)
+
+
+
+> 1 | \db.toko.updateOne(
+
+    |  ^
+
+  2 |   2 | {"name": "Toko Berkah"},
+
+  3 | > 3 | {$set: {"category": "aksesoris"}})
+
+  4 |
+
+
+
+jurnal13> db.toko.updateOne(
+
+|   2 | {"name": "Toko Berkah"},
+
+| > 3 | {$set: {"category": "aksesoris"}})
+
+Uncaught:
+
+SyntaxError: Unexpected token (3:0)
+
+
+
+  1 | db.toko.updateOne(
+
+  2 |   2 | {"name": "Toko Berkah"},
+
+> 3 | > 3 | {$set: {"category": "aksesoris"}})
+
+    | ^
+
+  4 |
+
+
+
+jurnal13> db.toko.updateOne(
+
+|   2 | {"name": "Toko Berkah"},
+
+| > 3 | {$set: {"category": "aksesoris"}})
+
+Uncaught:
+
+SyntaxError: Unexpected token (3:0)
+
+
+
+  1 | db.toko.updateOne(
+
+  2 |   2 | {"name": "Toko Berkah"},
+
+> 3 | > 3 | {$set: {"category": "aksesoris"}})
+
+    | ^
+
+  4 |
+
+
+
+jurnal13> db.toko.updateOne({"name": "Toko Berkah"}, {$set: {"category": "Aksesoris"}})
+
+{
+
+  acknowledged: true,
+
+  insertedId: null,
+
+  matchedCount: 1,
+
+  modifiedCount: 1,
+
+  upsertedCount: 0
+
+}
+
+jurnal13> db.toko.updateOne({"name": "Toko Maju"}, {$push: {"products": {"item": "Mouse Gaming Rusdi", "price": 250000, "stock": 12}}})
+
+{
+
+  acknowledged: true,
+
+  insertedId: null,
+
+  matchedCount: 1,
+
+  modifiedCount: 1,
+
+  upsertedCount: 0
+
+}
+
+jurnal13> db.toko.aggregate([{$group: {_id: "$city", jumlah_toko: {$sum: 1}}}, {$sort: {jumlah_toko: -1}}])
+
+[
+
+  { _id: 'Jakarta', jumlah_toko: 2 },
+
+  { _id: 'Surabaya', jumlah_toko: 1 },
+
+  { _id: 'Bandung', jumlah_toko: 1 },
+
+  { _id: 'Jomokerto', jumlah_toko: 1 }
+
+]
+
+jurnal13> db.toko.aggregate([{$unwind: "$products"}, {$group: {_id: "$category", rata_rata_harga: {$avg: "$products.price"}}}, {$sort: {rata_rata_harga: -1}}])
+
+[
+
+  { _id: 'Elektronik', rata_rata_harga: 6114285.714285715 },
+
+  { _id: 'Aksesoris', rata_rata_harga: 3150000 },
+
+  { _id: 'Ambatronik', rata_rata_harga: 825000 }
+
+]
+
+jurnal13> db.toko.updateOne({"name": "Toko Maju"}, {$push: {"products": {"item": "Powerbank Amba", "price": 350000, "stock": 15}}})
+
+{
+
+  acknowledged: true,
+
+  insertedId: null,
+
+  matchedCount: 1,
+
+  modifiedCount: 1,
+
+  upsertedCount: 0
+
+}
+
+jurnal13> db.toko.aggregate([{$unwind: "$products"}, {$group: {_id: "$city", harga_tertinggi: {$max: "$products.price"}}}])
+
+[
+
+  { _id: 'Surabaya', harga_tertinggi: 12000000 },
+
+  { _id: 'Jakarta', harga_tertinggi: 7700000 },
+
+  { _id: 'Bandung', harga_tertinggi: 8000000 },
+
+  { _id: 'Jomokerto', harga_tertinggi: 1200000 }
+
+]
+
+jurnal13> db.toko.aggregate([{$match: {"category": "Elektronik"}}, {$unwind: "$products"}, {$group: {_id: "$city", total_stock: {$sum: "$products.stock"}}}, {$sort: {total_stock: -1}}])
+
+[
+
+  { _id: 'Bandung', total_stock: 50 },
+
+  { _id: 'Surabaya', total_stock: 29 },
+
+  { _id: 'Jakarta', total_stock: 18 }
+
+]
+
+jurnal13> db.toko.deleteMany({$and: [{"category": "Fashion"}, {"city": "Surabaya"}]})
+
+{ acknowledged: true, deletedCount: 0 }
+
+jurnal13>
